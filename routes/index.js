@@ -5,6 +5,7 @@ const route = require('koa-route');
 
 let info = require("./info");
 let login = require("./login");
+let logout = require("./logout");
 
 
 let index_page = async function (ctx, next) {
@@ -26,6 +27,7 @@ module.exports = function(app){
 	app.use(route.post('/tokenlogin',login.tokenlogin))
 	app.use(route.get('/getToken',login.getToekn))
 	
+	app.use(route.post('/logout',logout.logout))
 
 	
 }
