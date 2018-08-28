@@ -39,6 +39,9 @@ let tokenlogin = async function(ctx){
 	let username = body.username;
 
 	let checkToken = await redisClient.hgetAsync('usertoken',username);
+	
+	ctx.body = checkToken === token;
+	
 	if(checkToken === token){
 		console.log('The token is ok, the user can login.');
 	}else{

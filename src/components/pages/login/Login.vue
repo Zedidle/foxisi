@@ -14,8 +14,22 @@ import { mapState,mapMutations } from 'vuex'
 export default {
   name: 'welcome',
   mounted(){
-		if(localStorage.getItem('token')){
-			this.toLogin();
+		let vm = this;
+		let token = localStorage.getItem('token'),
+			username = localStorage.getItem('username');
+		
+		if(token){
+			axios.post('/tokenlogin',{
+				token, username
+			}).then(response=>{
+				console.log(response);
+				let isTrueToken = response.data;
+				if(isTrueToken){
+					vm.toLogin();
+				}
+			}).catch(error=>{
+				console.error(error);
+			})
 		}
   },
   props: {
@@ -23,29 +37,29 @@ export default {
   data(){
 	return {
 		tokentip:'',
-  	};
+	};
   },
   computed:{
-  	...mapState([
-    	
-    	]),
+	...mapState([
+		
+		]),
 
   },
   methods:{
-  	...mapMutations([
-    	'toLogin'
-    	]),
-  	login:function(){
+	...mapMutations([
+		'toLogin'
+		]),
+	login:function(){
 		let vm = this;
 
-  		function getId(id){ return document.getElementById(id); }
+		function getId(id){ return document.getElementById(id); }
 
 		let username = getId('username').value.trim();
 		if(!username) return;
 
 		localStorage.setItem('username',username);
 
-
+		let axios = window.axios;
 		axios.post('/login',{
 			username
 		}).then(response=>{
@@ -64,7 +78,7 @@ export default {
 	},
 
 	tokenTip:function(){
-  		let vm = this;
+		let vm = this;
 		vm.tokentip = '该用户名已被使用，或者您丢失了口令。';
 		setTimeout(function(){
 			vm.tokentip = '';
