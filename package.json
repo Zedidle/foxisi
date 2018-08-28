@@ -11,6 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "vue-cli-service serve",
+    "b": "npm run build",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "node foxisi.js",
@@ -21,16 +22,16 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "bluebird": "^3.5.1",
     "fs.promised": "^3.0.0",
     "koa": "^2.3.0",
-    "koa-body": "^2.3.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.0.0",
     "koa-json": "^2.0.2",
-    "koa-redis": "^3.1.2",
     "koa-route": "^3.2.0",
-    "koa-session": "^5.8.3",
     "koa-static": "^4.0.1",
     "koa-views": "^6.1.4",
+    "redis": "^2.8.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
