@@ -1,27 +1,14 @@
+const redisClient = require('./helpers/redisClient');
 
-const redis = require("redis"),
-    client = redis.createClient();
+redisClient.hset("usertoken","username1","token1");
+redisClient.hset("usertoken","username2","token2");
+redisClient.hset("usertoken","username3","token3");
 
-const bluebird = require("bluebird");
-
-	bluebird.promisifyAll(redis.RedisClient.prototype);
-	bluebird.promisifyAll(redis.Multi.prototype);
-
-client.on("error", function (err) {
-    console.log("Error " + err);
-});
-
-
-
-client.hmset("usertoken","username1","token1");
-client.hmset("usertoken","username2","token2");
-client.hmset("usertoken","username3","token3");
-
-client.del("uesrtoken");
+redisClient.del("uesrtoken");
  
-// client.set("userlist", "val1");
-client.lpush("userlist", 1,2,3,4,5,6,7,8,9);
-client.save();
+// redisClient.set("userlist", "val1");
+redisClient.lpush("userlist", 1,2,3,4,5,6,7,8,9);
+redisClient.save();
 
 
 let pagetest = async function (ctx, next) {
@@ -30,10 +17,10 @@ let pagetest = async function (ctx, next) {
 
 
 let userlist = async function (ctx){
-	let l = await client.llenAsync('userlist'); 
-	let list = await client.lrangeAsync('userlist',0,l)
+	let l = await redisClient.llenAsync('userlist'); 
+	let list = await redisClient.lrangeAsync('userlist',0,l)
 
-	let token = await client.hgetAsync("usertoken","username1")
+	let token = await redisClient.hgetAsync("usertoken","username1")
 	ctx.body = {
 		token,
 		list

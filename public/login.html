@@ -3,14 +3,46 @@
 <head>
 	<meta charset="UTF-8">
 	<title>foxisi | Login</title>
+
+	<style>
+		#login-form{
+			text-align: center;
+			width:300px;
+			margin:0 auto;
+		}
+	</style>
 </head>
 <body>
 	
 	<h2 style='text-align: center;'>欢迎肆肥宅归来~</h2>
-	<form action="/login" method="POST">
-		<input type="text" name='username'>
-		<button>LOGIN</button>
+	<form id='login-form' action="/login" method="POST">
+		<input type="text" name='username' placeholder="请输入您的用户名">
+		<button id='login-btn' type='button'>LOGIN</button>
 	</form>
 
+
+	<script>
+        let getId = function(id){
+			return document.getElementById(id);
+		}
+		
+		let token = localStorage.getItem('token');
+		if(token){
+			window.location.href = '/';
+		}else{
+			getId('login-btn').onclick = function(){
+				let v = document.querySelector('input[name=username]').value.trim();
+				localStorage.setItem('username',v);
+				console.log(v);
+
+				getId('login-form').submit();
+			}
+		}
+
+
+
+
+
+	</script>
 </body>
 </html>

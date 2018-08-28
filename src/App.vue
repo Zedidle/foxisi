@@ -16,14 +16,26 @@ import Chat from './components/Chat.vue';
 export default {
   name: 'app',
   mounted(){
-    axios.get('/userlist')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
- 
+    let username = localStorage.getItem('username');
+    if(!username){
+      window.location.href = '/login';
+    }else{
+      console.log('getTOken')
+      axios.get("/getToken",{
+        params: {
+          username
+        }
+      })
+      .then(response=>{
+
+        console.log(response);
+        let token = response.data;
+        localStorage.setItem('token',token);
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+    }
   },
   components: {
     Welcome,

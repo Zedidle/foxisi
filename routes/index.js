@@ -16,11 +16,16 @@ let index_page = async function (ctx, next) {
 module.exports = function(app){
 	app.use(route.get('/',index_page));
 
-	
+
 	app.use(route.get('/userlist',info.userlist))
 	app.use(route.get('/pagetest',info.pagetest))
 
 
 	app.use(route.get('/login',login.loginpage))
 	app.use(route.post('/login',login.tologin))
+	app.use(route.post('/tokenlogin',login.tokenlogin))
+	app.use(route.get('/getToken',login.getToekn))
+	
+
+	
 }

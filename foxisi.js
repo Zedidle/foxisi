@@ -6,7 +6,7 @@ const fs = require('fs.promised');
 const views = require('koa-views');
 app.use(require('koa-json')());
 
-app.use(require('koa-bodyparser'));
+app.use(require('koa-bodyparser')());
 
 
 app.use(views(__dirname+"/dist", { extension: 'html' }))
