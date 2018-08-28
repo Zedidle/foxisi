@@ -16,6 +16,14 @@ import Chat from './components/Chat.vue';
 export default {
   name: 'app',
   mounted(){
+    axios.get('/userlist')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+ 
   },
   components: {
     Welcome,

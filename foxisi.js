@@ -3,69 +3,37 @@ const app = new Koa();
 const path = require('path');
 const static_serve = require('koa-static');
 const fs = require('fs.promised');
+const session = require('koa-session');
 const views = require('koa-views');
+app.use(require('koa-json')());
 
+// const redisStore = require('koa-redis');
 
+app.keys = ['some secret hurr'];
 
-
-
-
-
-
-
-
-// redis-test
-var session = require('koa-generic-session');
-var redisStore = require('koa-redis');
-app.keys = ['keys', 'keykeys'];
-app.use(session({
-  store: redisStore({
-    // Options specified here
-  })
-}));
- 
-app.use(function *() {
-  switch (this.path) {
-  case '/get':
-    get.call(this);
-    break;
-  case '/remove':
-    remove.call(this);
-    break;
-  case '/regenerate':
-    yield regenerate.call(this);
-    break;
-  }
-});
- 
-function get() {
-  var session = this.session;
-  session.count = session.count || 0;
-  session.count++;
-  this.body = session.count;
-}
- 
-function remove() {
-  this.session = null;
-  this.body = 0;
-}
- 
-function *regenerate() {
-  get.call(this);
-  yield this.regenerateSession();
-  get.call(this);
-}
+const CONFIG = {
+  key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+  /** (number || 'session') maxAge in ms (default is 1 days) */
+  /** 'session' will result in a cookie that expires when session/browser is closed */
+  /** Warning: If a session cookie is stolen, this cookie will never expire */
+  maxAge: 86400000,
+  overwrite: true, /** (boolean) can overwrite or not (default true) */
+  httpOnly: true, /** (boolean) httpOnly or not (default true) */
+  signed: true, /** (boolean) signed or not (default true) */
+  rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+  renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+};
  
 
+app.use(session(CONFIG, app));
 
 
 
 
-
-
-app.use(require('koa-static')(__dirname + '/dist'));
 app.use(views(__dirname+"/dist", { extension: 'html' }))
+app.use(require('koa-static')(__dirname + '/dist'));
 require('./routes')(app);
+
 
 
 console.log("Listen: 127.0.0.1:3000")
