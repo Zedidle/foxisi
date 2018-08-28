@@ -16,17 +16,6 @@ let logout = async function (ctx){
 	ctx.body = result;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 module.exports = {
 	logout
 }

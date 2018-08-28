@@ -10,11 +10,9 @@ redisClient.del("uesrtoken");
 redisClient.lpush("userlist", 1,2,3,4,5,6,7,8,9);
 redisClient.save();
 
-
 let pagetest = async function (ctx, next) {
   await ctx.render('pages/test');
 }
-
 
 let userlist = async function (ctx){
 	let l = await redisClient.llenAsync('userlist'); 
