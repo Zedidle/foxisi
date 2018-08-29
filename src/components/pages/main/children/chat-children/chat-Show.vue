@@ -11,15 +11,9 @@
 
 import { mapState,mapMutations } from 'vuex'
 
-
 export default {
   name: 'chat-show',
   mounted(){
-    this.appendChatContentLi({
-      username:'zfcc',
-      content:'23333',
-      time:new Date()
-    })
   },
   data(){
     return{

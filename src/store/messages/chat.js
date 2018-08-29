@@ -1,20 +1,8 @@
 export default {
 	state: {
 		chatContentList:[{
-			username:'zfc',
-			content:'2333',
-			time:new Date()
-		},{
-			username:'zfc',
-			content:'2333',
-			time:new Date()
-		},{
-			username:'zfc',
-			content:'2333',
-			time:new Date()
-		},{
-			username:'zfc',
-			content:'2333',
+			username:'火西肆',
+			content:'测试一下~',
 			time:new Date()
 		}],
 	},

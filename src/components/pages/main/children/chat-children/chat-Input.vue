@@ -1,6 +1,6 @@
 <template>
   <div class="chat-input" @keyup.enter='send'>
-	<textarea v-model='content' placeholder="---------------------------至少3个字，至多100字。---------------------------"></textarea>
+	<textarea v-model='content' placeholder="—————————————至少3个字，至多100字。————————————"></textarea>
 	<a @click='send' class="button button-primary button-small">发送</a>
   </div>
 </template>
@@ -29,29 +29,20 @@ export default {
 		]),
 		send(){
 			let l = this.content.trim().length;
-			if(l<4 || l>100) return;
+			if(l<3 || l>100) return;
 
-			let vm = this,
-				axios = window.axios;
+			const vm = this,
+				socket = window.socket;
 
-			axios.post('/sendMessage',{
+			socket.emit('chat message',{
 				username:localStorage.getItem('username'),
 				content:vm.content,
 				time:new Date()
-			})
-			.then(response=>{
-				console.log(response);
-				let contentLi = response.data;
-				vm.appendChatContentLi(contentLi);
-				vm.content = '';
-			})
-			.catch(error=>{
-				console.log(error);
-			})		
+			});
+
+			vm.content = '';
 		}
 	},
-
-
 }
 </script>
 
@@ -62,14 +53,15 @@ export default {
     height:100px;
     width:100%;
     textarea{
+		font-family:'微软雅黑';
 		width:98%;
 		height:60px;
 		resize:none;
 		font-size:16px;
 		overflow: hidden;
     }
-    a{
-    	float: right;
-    }
+	a{
+		float: right;
+	}
   }
 </style>

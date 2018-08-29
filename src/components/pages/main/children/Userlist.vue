@@ -33,7 +33,6 @@ export default {
       let colorlist = ['button-primary','button-action','button-highlight','button-caution','button-royal'];
 
       let ranColor = colorlist[parseInt(Math.random()*colorlist.length)];
-      console.log(ranColor)
       S[ranColor] = true;
       return S;
     },

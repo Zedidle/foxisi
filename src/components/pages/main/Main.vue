@@ -17,6 +17,8 @@ import Userlist from './children/Userlist.vue';
 import Chat from './children/Chat.vue';
 import Userinfo from './children/Userinfo.vue';
 
+
+
 export default {
   components:{
     Welcome,
