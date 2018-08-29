@@ -3,7 +3,12 @@
 		<div class='welcome-title'>欢迎肥宅归来~</div>
 		<br>
 		<h4 class='token-tip' v-show='tokentip'>{{tokentip}}</h4>
-		<input id='username' name='username' placeholder="请输入您的用户名">
+		<input 
+			@keyup.enter='login'
+			id='username'
+			placeholder="请输入您的用户名"
+			v-model.trim='username'
+		>
 		<br><br>
 		<a @click='login' class="button button-action button-rounded">登录</a>
 	</div>
@@ -16,9 +21,10 @@ import { mapState,mapMutations } from 'vuex'
 export default {
   name: 'welcome',
   mounted(){
-		let vm = this;
-		let token = localStorage.getItem('token'),
-			username = localStorage.getItem('username');
+		let vm = this
+			,axios = window.axios
+			,token = localStorage.getItem('token')
+			,username = localStorage.getItem('username');
 		
 		if(token){
 			axios.post('/tokenlogin',{
@@ -38,6 +44,7 @@ export default {
   data(){
 	return {
 		tokentip:'',
+		username:'',
 	};
   },
   computed:{
@@ -52,10 +59,7 @@ export default {
 		]),
 	login:function(){
 		let vm = this;
-
-		function getId(id){ return document.getElementById(id); }
-
-		let username = getId('username').value.trim();
+		let username = vm.username;
 		if(!username) return;
 
 		localStorage.setItem('username',username);
