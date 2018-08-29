@@ -29,22 +29,6 @@ export default {
     let username = localStorage.getItem('username');
     if(!username){
       vm.toLogout();
-    }else{
-      console.log('getTOken')
-      axios.get("/getToken",{
-        params: {
-          username
-        }
-      })
-      .then(response=>{
-
-        console.log(response);
-        let token = response.data;
-        localStorage.setItem('token',token);
-      })
-      .catch(error=>{
-        console.log(error);
-      })
     }
   },
   data(){

@@ -2,18 +2,18 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-
+import chat from './messages/chat.js';
 
 export default new Vuex.Store({
-  state: {
-  	isLogin: false,
-  },
-  mutations: {
+  state: Object.assign({
+    isLogin: false,
+  },chat.state),
+  mutations: Object.assign({
     toLogin (state) {
-      	state.isLogin = true;
+      state.isLogin = true;
     },
     toLogout(state){
-    	state.isLogin = false;
+      state.isLogin = false;
     }
-  }
+  },chat.mutations)
 })

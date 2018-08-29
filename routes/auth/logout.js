@@ -1,4 +1,4 @@
-const redisClient = require("./helpers/redisClient")
+const redisClient = require("../helpers/redisClient")
 
 let logout = async function (ctx){
 
@@ -6,13 +6,11 @@ let logout = async function (ctx){
 	let username = body.username;
 	console.log(username,' logout.');
 
+
+	await redisClient.sremAsync('userlist',username);
 	let result = await redisClient.hdelAsync('usertoken',username);
-	console.log(result);
-	if(result){
-		console.log(`Username(${username}) logout successfully.`);
-	}else{
-		console.log(`Username(${username}) logout unsuccessfully.`);
-	}
+
+
 	ctx.body = result;
 }
 

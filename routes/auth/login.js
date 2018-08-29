@@ -1,4 +1,4 @@
-const redisClient = require("./helpers/redisClient")
+const redisClient = require("../helpers/redisClient")
 const md5 = require('md5');
 
 let tologin = async function(ctx){
@@ -13,8 +13,10 @@ let tologin = async function(ctx){
 		ctx.body = '';
 	}else{
 		// new user login
+		redisClient.hsetAsync('usertoken',username,token);
+		redisClient.saddAsync('userlist',username);
+		redisClient.save();
 		token = md5(username);
-		redisClient.hsetAsync('usertoken',username,md5(username));
 		ctx.body = token;
 	}
 }
@@ -26,14 +28,7 @@ let tokenlogin = async function(ctx){
 	let username = body.username;
 
 	let checkToken = await redisClient.hgetAsync('usertoken',username);
-	
 	ctx.body = checkToken === token;
-	
-	if(checkToken === token){
-		console.log('The token is ok, the user can login.');
-	}else{
-		console.log('The token is not ok.');
-	}
 }
 
 module.exports = {

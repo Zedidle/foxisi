@@ -10,26 +10,34 @@
 export default {
   name: 'userlist',
   mounted(){
-    console.log('USERLIST');
+    this.getUserlist();
+    setInterval(this.getUserlist,5000);
   }, 
   data(){
     return{
-      // userlist:[1,2,3,4,5]
+      userlist:[]
     }
   },
   computed:{
-    userlist(){
-      let u = [];
-      for(let i=0;i<20;i++){
-        u.push(i);
-      }
-      return u;
+
+  },
+  methods:{
+    getUserlist:function(){
+      let vm = this,
+          axios = window.axios;
+      axios.get('/userlist')
+      .then(response=>{
+        console.log(response)
+        vm.userlist = response.data;
+      })
+      .catch(error=>{
+        console.log(error)
+      })
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style  lang="less" scoped>
   .userlist{
     float: left;
@@ -47,7 +55,7 @@ export default {
       li{
         box-shadow:0 0 3px #999;
         list-style:none;
-        height:44px;
+        height:auto;
         padding:0;
         margin:8px 5px;
       }
