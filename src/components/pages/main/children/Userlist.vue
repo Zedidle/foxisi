@@ -1,8 +1,10 @@
 <template>
   <div class="userlist">
-    <ul>
-        <li :key='item' v-for='item in userlist'>{{item}}</li>
-    </ul>
+    <a 
+      :key='item' 
+      v-for='item in userlist'
+      v-bind:class="btnStyle()">{{item}}
+    </a>
   </div>
 </template>
 
@@ -11,7 +13,7 @@ export default {
   name: 'userlist',
   mounted(){
     this.getUserlist();
-    setInterval(this.getUserlist,5000);
+    setInterval(this.getUserlist,10000);
   }, 
   data(){
     return{
@@ -22,6 +24,19 @@ export default {
 
   },
   methods:{
+    btnStyle(){
+      let S = {
+        button:true,
+        'button-small':true,
+      };
+
+      let colorlist = ['button-primary','button-action','button-highlight','button-caution','button-royal'];
+
+      let ranColor = colorlist[parseInt(Math.random()*colorlist.length)];
+      console.log(ranColor)
+      S[ranColor] = true;
+      return S;
+    },
     getUserlist:function(){
       let vm = this,
           axios = window.axios;
@@ -45,20 +60,11 @@ export default {
     height:550px;
     padding:0 5px 0 0;
     width:240px;
-    overflow: hidden;
-    ul{
-      overflow-y:scroll;
-      transform: translateX(10px);
-      padding:0;
-      margin:0;
-      height:540px;
-      li{
-        box-shadow:0 0 3px #999;
-        list-style:none;
-        height:auto;
-        padding:0;
-        margin:8px 5px;
-      }
+    overflow-y: scroll;
+    // transform: translateX(10px);
+    a{
+      margin:2px;
+      height:auto;
     }
   }
 

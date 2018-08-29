@@ -1,7 +1,7 @@
 <template>
   <div class="chat-show">
     <div v-for='item in chatContentList' :key='item' class='content-li'>
-      {{item.time}}| {{item.username}}：{{item.content}}
+      <a class="button button-small">{{item.time}}</a> <a v-bind:class="btnStyle()">{{item.username}}</a> -: {{item.content}}
     </div>
 
   </div>
@@ -34,7 +34,19 @@ export default {
   methods:{
     ...mapMutations([
         'appendChatContentLi'
-      ])
+      ]),
+    btnStyle(){
+      let S = {
+        button:true,
+        'button-small':true,
+      };
+
+      let colorlist = ['button-primary','button-action','button-highlight','button-caution','button-royal'];
+
+      let ranColor = colorlist[parseInt(Math.random()*colorlist.length)];
+      S[ranColor] = true;
+      return S;
+    },
   }
 }
 </script>
@@ -42,6 +54,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
   .chat-show{
+    overflow-y:scroll;
     margin-bottom:10px;
     box-shadow:0 0 5px #999;
     width:100%;

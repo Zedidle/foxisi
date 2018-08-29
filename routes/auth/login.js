@@ -13,10 +13,10 @@ let tologin = async function(ctx){
 		ctx.body = '';
 	}else{
 		// new user login
+		token = md5(username);
 		redisClient.hsetAsync('usertoken',username,token);
 		redisClient.saddAsync('userlist',username);
 		redisClient.save();
-		token = md5(username);
 		ctx.body = token;
 	}
 }
@@ -28,6 +28,9 @@ let tokenlogin = async function(ctx){
 	let username = body.username;
 
 	let checkToken = await redisClient.hgetAsync('usertoken',username);
+	console.log(checkToken);
+	console.log(token);
+	console.log(username);
 	ctx.body = checkToken === token;
 }
 

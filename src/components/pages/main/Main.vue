@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <welcome msg="Welcome to Foxisi-ChatRoom"/>
+    <welcome msg="火西平行世界肥宅宇宙聊天肆"/>
     <userinfo></userinfo>
     <div class='content'>
       <userlist></userlist>
@@ -50,7 +50,9 @@ export default {
 
 
 <style scoped>
+
 .content{
+  background:rgba(255,255,255,.85);
   padding:5px;
   width:900px;
   height:560px;

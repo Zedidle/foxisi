@@ -1,9 +1,11 @@
 <template>
 	<div class="login">
-		<h2 style='text-align: center;'>欢迎肥宅归来~</h2>
+		<div class='welcome-title'>欢迎肥宅归来~</div>
+		<br>
 		<h4 class='token-tip' v-show='tokentip'>{{tokentip}}</h4>
 		<input id='username' name='username' placeholder="请输入您的用户名">
-		<button id='login-btn' @click='login'>LOGIN</button>
+		<br><br>
+		<a @click='login' class="button button-action button-rounded">登录</a>
 	</div>
 </template>
 
@@ -92,17 +94,17 @@ export default {
 <style scoped>
 	#username{
 		text-align: center;
-		width: 200px;
-		height:30px;
+		width: 240px;
+		height:50px;
 		margin:0 auto;
-	}
-	#login-btn{
-		width:100px;
-		margin:10px;
-		height:30px;
+		font-size:18px;
 	}
 	.token-tip{
 		color:red;
+	}
+	.welcome-title{
+		font-size:48px;
+		text-align: center;
 	}
 </style>
 

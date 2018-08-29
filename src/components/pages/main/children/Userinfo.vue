@@ -1,6 +1,7 @@
 <template>
   <div class="userinfo">
-    {{username}},  <button @click='logout'>logout</button>
+    
+      <a class="button button-small button-royal">{{username}}</a> | <a @click='logout' class="button button-caution button-pill button-small">登出</a>
   </div>
 </template>
 
@@ -42,7 +43,7 @@ export default {
 
 <style  lang="less" scoped>
   .userinfo{
-
+    margin:5px;
   }
 
 </style>

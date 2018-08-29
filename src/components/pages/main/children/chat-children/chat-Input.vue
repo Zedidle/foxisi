@@ -1,7 +1,7 @@
 <template>
   <div class="chat-input" @keyup.enter='send'>
 	<textarea v-model='content' placeholder="---------------------------至少3个字，至多100字。---------------------------"></textarea>
-	<button @click='send'>发送消息</button>
+	<a @click='send' class="button button-primary button-small">发送</a>
   </div>
 </template>
 
@@ -68,8 +68,8 @@ export default {
 		font-size:16px;
 		overflow: hidden;
     }
-    button{
-		float: right;
+    a{
+    	float: right;
     }
   }
 </style>
