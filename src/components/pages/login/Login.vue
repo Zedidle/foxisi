@@ -24,7 +24,6 @@ export default {
 			axios.post('/tokenlogin',{
 				token, username
 			}).then(response=>{
-				console.log(response);
 				let isTrueToken = response.data;
 				if(isTrueToken){
 					vm.toLogin();

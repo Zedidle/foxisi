@@ -60,7 +60,6 @@ export default {
     padding:0 5px 0 0;
     width:240px;
     overflow-y: scroll;
-    // transform: translateX(10px);
     a{
       margin:2px;
       height:auto;

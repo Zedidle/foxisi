@@ -1,4 +1,7 @@
-const redisClient = require("../helpers/redisClient")
+
+let ROOT = process.cwd();
+const redisClient = require(ROOT+"/dbServer/redisClient")
+// const redisClient = require("../helpers/redisClient")
 
 let logout = async function (ctx){
 

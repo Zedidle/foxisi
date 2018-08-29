@@ -1,14 +1,15 @@
 export default {
 	state: {
-		chatContentList:[{
-			username:'火西肆',
-			content:'测试一下~',
-			time:new Date()
-		}],
+		chatContentList:[],
 	},
 	mutations: {
 		appendChatContentLi(state,chatContentLi){
 			state.chatContentList.push(chatContentLi);
+			setTimeout(function(){
+				let chatShow = document.querySelector('.chat-show');
+				chatShow.scrollTop = chatShow.scrollHeight;
+		
+			},0);
 		}
 	},
 	actions: {

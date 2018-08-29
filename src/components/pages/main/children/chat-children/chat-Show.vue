@@ -14,6 +14,22 @@ import { mapState,mapMutations } from 'vuex'
 export default {
   name: 'chat-show',
   mounted(){
+    //获取聊天记录
+    const vm=this,
+      axios = window.axios;
+    axios.get('chatrecord')
+    .then(response=>{
+      let chatrecord = response.data;
+      console.log(chatrecord);
+      if(chatrecord.length){
+        for(let item of chatrecord){
+          vm.appendChatContentLi(JSON.parse(item));
+        }
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
   },
   data(){
     return{

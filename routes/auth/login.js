@@ -1,4 +1,5 @@
-const redisClient = require("../helpers/redisClient")
+let ROOT = process.cwd();
+const redisClient = require(ROOT+"/dbServer/redisClient")
 const md5 = require('md5');
 
 let tologin = async function(ctx){

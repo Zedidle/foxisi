@@ -34,11 +34,11 @@ export default {
 			const vm = this,
 				socket = window.socket;
 
-			socket.emit('chat message',{
+			socket.emit('chat message',JSON.stringify({
 				username:localStorage.getItem('username'),
 				content:vm.content,
 				time:new Date()
-			});
+			}));
 
 			vm.content = '';
 		}
