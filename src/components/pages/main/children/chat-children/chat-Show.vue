@@ -1,9 +1,8 @@
 <template>
   <div class="chat-show">
     <div v-for='item in chatContentList' :key='item' class='content-li'>
-      <a class="button button-small">{{item.time}}</a> <a v-bind:class="btnStyle()">{{item.username}}</a> -: {{item.content}}
+      <a class="button button-tiny">{{item.time}}</a><a v-bind:class="btnStyle()">{{item.username}}</a> -: {{item.content}}
     </div>
-
   </div>
 </template>
 

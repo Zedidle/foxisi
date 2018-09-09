@@ -9,6 +9,7 @@
 				console.log('get chat message: ')
 				console.log(msg)
 				vm.appendChatContentLi(JSON.parse(msg))
+				window.msgTipSound.play();
 			});
 		},
 		methods:{

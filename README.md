@@ -7,6 +7,17 @@
 npm install
 ```
 
+## About development
+```
+npm run watch
+```
+and
+```
+npm run b
+```
+
+
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
@@ -26,6 +37,8 @@ npm run lint
 npm start
 or
 npm run watch
+
+
 
 ### deploy
 npm run deploy
