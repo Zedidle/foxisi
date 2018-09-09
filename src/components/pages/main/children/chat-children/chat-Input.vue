@@ -1,8 +1,9 @@
 <template>
   <div class="chat-input" @keyup.enter='send'>
 	<textarea v-model='content' placeholder="—————————————至少3个字，至多100字。————————————"></textarea>
-	<a @click='send' class="button button-primary button-small">发送</a>
-  </div>
+	<a @click='onShowCode' class="button button-small"><i class="fa fa-quote-left"></i></a>
+	<a @click='send' class="button button-primary button-small"><i class="fa fa-send"></i> 发送</a>
+  </div>  
 </template>
 
 <script>
@@ -11,7 +12,6 @@ import { mapState,mapMutations } from 'vuex'
 export default {
 	name: 'chat-input',
 	mounted(){
-
 	},
 	data(){
 		return{
@@ -25,7 +25,8 @@ export default {
 	},
 	methods:{
 		...mapMutations([
-			'appendChatContentLi'
+			'appendChatContentLi',
+      		'onShowCode',
 		]),
 		send(){
 			let l = this.content.trim().length;
@@ -60,8 +61,15 @@ export default {
 		font-size:16px;
 		overflow: hidden;
     }
+
 	a{
-		float: right;
+		float: left;
+		padding:0 10px;
+		margin-right:3px;
+		&:last-child{
+			margin-right:0;
+			float: right;
+		}
 	}
   }
 </style>

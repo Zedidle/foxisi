@@ -59,19 +59,20 @@ export default {
       this.isMoving = true;
       window.mechanismSound.play();
       let userlist = document.querySelector('.userlist'),
-          w = userlist.off?0:240,
+          w = userlist.on?240:0,
           k = 1;
 
       let interval = setInterval(function(){
         if(w>240 || w<0){
           clearInterval(interval);
           this.isMoving = false;
-          this.userlistTip = this.getUserlistTip(userlist.off);
-          w = userlist.off?240:0;
-          userlist.off = !userlist.off;
+          this.userlistTip = this.getUserlistTip(userlist.on);
+          w = userlist.on?0:240;
+          userlist.on = !userlist.on;
+          userlist.style.overflowY = userlist.on?'scroll':'hidden';
         }
         userlist.style.width = w + 'px';
-        w = w + (userlist.off?2:-2);
+        w = w + (userlist.on?-2:2);
         k++;
       }.bind(this),2000/(25+k));
     }

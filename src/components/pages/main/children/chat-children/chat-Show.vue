@@ -1,7 +1,10 @@
 <template>
   <div class="chat-show">
-    <div v-for='item in chatContentList' :key='item' class='content-li'>
-      <a class="button button-tiny">{{item.time}}</a><a v-bind:class="btnStyle()">{{item.username}}</a> -: {{item.content}}
+    <!-- <div v-for='item in chatContentList' :key='item' class='content-li'> -->
+    <div v-for='item in chatWithCodeContentList' :key='item' class='content-li'>
+      <a class="button button-small">{{item.time}}</a><a v-bind:class="btnStyle()">{{item.username}}</a> -:<a v-show='item.isCode' @click='toggleCode' class="button button-raised button-small">展开代码</a>
+      <span v-if='item.isCode' v-html='item.content'></span>
+      <span v-else>{{item.content}}</span>
     </div>
   </div>
 </template>
@@ -9,6 +12,7 @@
 <script>
 
 import { mapState,mapMutations } from 'vuex'
+import CodeFlask from "codeflask";
 
 export default {
   name: 'chat-show',
@@ -32,10 +36,34 @@ export default {
   },
   data(){
     return{
-
     }
   },
   computed:{
+    chatWithCodeContentList:function(){
+      let list = this.chatContentList;
+      for(let i of list){
+        if(i.isCode){
+          let node = document.createElement('div');
+          let flask = new CodeFlask(node, {
+            language:['clike','javascript'],
+          });
+
+          let f = node.querySelector('.codeflask');
+          f.style.width = '600px';
+          f.style.height = '40px';
+          f.style.position = 'relative';
+          f.style.overflowY = 'scroll';
+          f.style.resize = 'vertical';
+          f.style.opacity = 0.8;
+
+          f.querySelector('pre').style.width = 'auto';
+          flask.updateCode(i.content);
+          i.content = node.innerHTML;
+        }
+      }
+
+      return list;
+    },
     ...mapState([
         'chatContentList'
       ])
@@ -44,6 +72,15 @@ export default {
     ...mapMutations([
         'appendChatContentLi'
       ]),
+
+    toggleCode(e){
+      let parent = e.currentTarget.parentNode;
+      let p = parent.querySelector('.codeflask > pre');
+      parent.querySelector('.codeflask').style.height = (parent.onCode?40:p.offsetHeight) + 'px';
+      parent.onCode = !parent.onCode;
+      e.currentTarget.innerText = parent.onCode?"收起代码":"展开代码";
+    },
+
     btnStyle(){
       let S = {
         button:true,

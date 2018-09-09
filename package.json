@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
+    "codeflask": "^1.2.1",
     "fs.promised": "^3.0.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.1",

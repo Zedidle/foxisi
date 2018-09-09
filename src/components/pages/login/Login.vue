@@ -1,6 +1,6 @@
 <template>
 	<div class="login">
-		<div class='welcome-title'>欢迎肥宅归来~</div>
+		<div class='welcome-title'>欢迎阿宅</div>
 		<br>
 		<h4 class='token-tip' v-show='tokentip'>{{tokentip}}</h4>
 		<input 
@@ -98,7 +98,7 @@ export default {
 	#username{
 		text-align: center;
 		width: 240px;
-		height:50px;
+		height:44px;
 		margin:0 auto;
 		font-size:18px;
 	}
@@ -106,7 +106,7 @@ export default {
 		color:red;
 	}
 	.welcome-title{
-		font-size:48px;
+		font-size:36px;
 		text-align: center;
 	}
 </style>

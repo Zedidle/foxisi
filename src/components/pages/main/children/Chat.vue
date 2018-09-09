@@ -2,18 +2,24 @@
   <div class="chat">
     <chat-show></chat-show>
     <chat-input></chat-input>
+    <chat-code></chat-code>
   </div>
 </template>
 
 <script>
 import ChatShow from "./chat-children/chat-Show.vue";
 import ChatInput from "./chat-children/chat-Input.vue";
+import ChatCode from "./chat-children/chat-Code.vue";
 
 export default {
   name: 'chat',
   components:{
     ChatShow,
-    ChatInput
+    ChatInput,
+    ChatCode
+  },
+  mounted(){
+    
   }
 }
 </script>

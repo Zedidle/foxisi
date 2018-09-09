@@ -1,6 +1,7 @@
 export default {
 	state: {
 		chatContentList:[],
+		isShowCode:false,
 	},
 	mutations: {
 		appendChatContentLi(state,chatContentLi){
@@ -12,6 +13,12 @@ export default {
 				let chatShow = document.querySelector('.chat-show');
 				chatShow.scrollTop = chatShow.scrollHeight;
 			},0);
+		},
+		onShowCode(state){
+			state.isShowCode = true;
+		},
+		offShowCode(state){
+			state.isShowCode = false;
 		}
 	},
 	actions: {
