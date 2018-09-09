@@ -1,8 +1,7 @@
 <template>
   <div class="chat-show">
-    <!-- <div v-for='item in chatContentList' :key='item' class='content-li'> -->
     <div v-for='item in chatWithCodeContentList' :key='item' class='content-li'>
-      <a class="button button-small">{{item.time}}</a><a v-bind:class="btnStyle()">{{item.username}}</a> -:<a v-show='item.isCode' @click='toggleCode' class="button button-raised button-small">展开代码</a>
+      <a class="button button-small">{{item.time}}</a><a v-bind:class="btnStyle()">{{item.username}}</a> -：<a v-show='item.isCode' @click='toggleCode' class="button button-raised button-small">展开代码</a>
       <span v-if='item.isCode' v-html='item.content'></span>
       <span v-else>{{item.content}}</span>
     </div>
@@ -23,7 +22,6 @@ export default {
     axios.get('chatrecord')
     .then(response=>{
       let chatrecord = response.data;
-      console.log(chatrecord);
       if(chatrecord.length){
         for(let item of chatrecord){
           vm.appendChatContentLi(JSON.parse(item));
@@ -42,7 +40,7 @@ export default {
     chatWithCodeContentList:function(){
       let list = this.chatContentList;
       for(let i of list){
-        if(i.isCode){
+        if(i.isCode && !i.dealtCode){
           let node = document.createElement('div');
           let flask = new CodeFlask(node, {
             language:['clike','javascript'],
@@ -57,8 +55,10 @@ export default {
           f.style.opacity = 0.8;
 
           f.querySelector('pre').style.width = 'auto';
+
           flask.updateCode(i.content);
           i.content = node.innerHTML;
+          i.dealtCode = true;
         }
       }
 
@@ -97,7 +97,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
   .chat-show{
     overflow-y:scroll;

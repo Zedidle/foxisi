@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <welcome msg="火西宇宙聊天肆"/></welcome>
-    <!-- <welcome msg="foxisi"/></welcome> -->
     <userinfo></userinfo>
     <div class='content'>
       <userlist></userlist>

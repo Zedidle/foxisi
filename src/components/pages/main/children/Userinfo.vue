@@ -2,10 +2,14 @@
   <div class="userinfo">
       <a 
         @click="toggleUserlist"
-        style='margin-right:20px;width:auto'
-        class="button button-primary button-rounded button-small"
+        style='margin-right:20px;'
+        class="button button-3d button-primary button-rounded button-small"
       >{{userlistTip}}</a>
-      <a class="button button-small button-royal">{{username}}</a> | <a @click='logout' class="button button-caution button-pill button-small">登出</a>
+      <a 
+        style='margin-right:20px;'
+        class="button button-3d button-small button-rounded  button-royal"
+      ><i class="fa fa-user"></i> {{username}}</a>
+      <a @click='logout' class="button button-3d button-caution button-pill button-small"><i class="fa fa-sign-out"></i> 登出</a>
   </div>
 </template>
 
@@ -59,22 +63,21 @@ export default {
       this.isMoving = true;
       window.mechanismSound.play();
       let userlist = document.querySelector('.userlist'),
-          w = userlist.on?240:0,
-          k = 1;
+          w = userlist.off?0:240;
 
       let interval = setInterval(function(){
         if(w>240 || w<0){
           clearInterval(interval);
           this.isMoving = false;
-          this.userlistTip = this.getUserlistTip(userlist.on);
-          w = userlist.on?0:240;
-          userlist.on = !userlist.on;
-          userlist.style.overflowY = userlist.on?'scroll':'hidden';
+          this.userlistTip = this.getUserlistTip(userlist.off);
+          w = userlist.off?240:0;
+          userlist.off = !userlist.off;
+          userlist.style.overflowY = userlist.off?'hidden':'scroll';
         }
         userlist.style.width = w + 'px';
-        w = w + (userlist.on?-2:2);
+        w = w + (userlist.off?2:-2);
         k++;
-      }.bind(this),2000/(25+k));
+      }.bind(this),80);
     }
   }
 }
@@ -82,7 +85,7 @@ export default {
 
 <style  lang="less" scoped>
   .userinfo{
-    margin:5px;
+    margin-bottom:15px;
   }
 
 </style>

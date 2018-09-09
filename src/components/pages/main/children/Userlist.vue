@@ -58,8 +58,7 @@ export default {
     box-shadow: 0 0 5px #999;
     height:550px;
     padding:0 5px 0 0;
-    // width:240px;
-    width:0px;
+    width:240px;
     // overflow-y: scroll;
     overflow-y: hidden;
     a{

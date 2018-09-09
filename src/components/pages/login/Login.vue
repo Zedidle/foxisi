@@ -10,7 +10,7 @@
 			v-model.trim='username'
 		>
 		<br><br>
-		<a @click='login' class="button button-action button-rounded">登录</a>
+		<a @click='login' class="button button-3d button-action button-rounded"><i class="fa fa-sign-in"> 登录</a>
 	</div>
 </template>
 

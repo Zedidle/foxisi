@@ -1,6 +1,6 @@
 <template>
   <div class="chat-input" @keyup.enter='send'>
-	<textarea v-model='content' placeholder="—————————————至少3个字，至多100字。————————————"></textarea>
+	<textarea v-model='content' placeholder="至多200字"></textarea>
 	<a @click='onShowCode' class="button button-small"><i class="fa fa-quote-left"></i></a>
 	<a @click='send' class="button button-primary button-small"><i class="fa fa-send"></i> 发送</a>
   </div>  
@@ -30,7 +30,7 @@ export default {
 		]),
 		send(){
 			let l = this.content.trim().length;
-			if(l<3 || l>100) return;
+			if(!l || l>200) return;
 
 			const vm = this,
 				socket = window.socket;

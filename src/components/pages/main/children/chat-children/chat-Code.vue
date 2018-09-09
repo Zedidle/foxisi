@@ -62,7 +62,7 @@ export default {
       let code = this.flask.getCode(),
           l = code.trim().length;
 
-      if(l<10 || l>1000) return;
+      if(!l || l>500) return;
 
       const vm = this,
         socket = window.socket;
