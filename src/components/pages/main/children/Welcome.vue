@@ -1,6 +1,6 @@
 
 <template>
-    <h2>{{ msg }}</h2>
+    <h2 class='app-title'>{{ msg }}</h2>
 </template>
 
 <script>
@@ -14,5 +14,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+	h2{
+		font-size: 1.5rem;
+		color: #FFF;
+	}
 </style>

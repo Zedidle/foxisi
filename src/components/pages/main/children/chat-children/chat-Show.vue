@@ -1,7 +1,7 @@
 <template>
   <div class="chat-show">
     <div v-for='item in chatWithCodeContentList' :key='item' class='content-li'>
-      <a class="button button-small">{{item.time}}</a><a v-bind:class="btnStyle()">{{item.username}}</a> -：<a v-show='item.isCode' @click='toggleCode' class="button button-raised button-small">展开代码</a>
+      <a style='padding-left:0.5rem;padding-right:0.5rem;' class="button button-small">{{item.time}}</a><a style='padding-left:0.7rem;padding-right:0.7rem;' v-bind:class="item.color">{{item.username}}</a> -：<a v-show='item.isCode' @click='toggleCode' class="button button-raised button-small">展开代码</a>
       <span v-if='item.isCode' v-html='item.content'></span>
       <span v-else>{{item.content}}</span>
     </div>
@@ -17,7 +17,7 @@ export default {
   name: 'chat-show',
   mounted(){
     //获取聊天记录
-    const vm=this,
+    const vm = this,
       axios = window.axios;
     axios.get('chatrecord')
     .then(response=>{
@@ -31,6 +31,7 @@ export default {
     .catch(error=>{
       console.log(error);
     })
+
   },
   data(){
     return{
@@ -47,8 +48,9 @@ export default {
           });
 
           let f = node.querySelector('.codeflask');
-          f.style.width = '600px';
-          f.style.height = '40px';
+          let w = document.body.clientHeight;
+          f.style.width = w>960?'600px':'100%';
+          f.style.height = '2.5rem';
           f.style.position = 'relative';
           f.style.overflowY = 'scroll';
           f.style.resize = 'vertical';
@@ -65,6 +67,7 @@ export default {
       return list;
     },
     ...mapState([
+        // 'colorList',
         'chatContentList'
       ])
   },
@@ -80,7 +83,6 @@ export default {
       parent.onCode = !parent.onCode;
       e.currentTarget.innerText = parent.onCode?"收起代码":"展开代码";
     },
-
     btnStyle(){
       let S = {
         button:true,
@@ -93,6 +95,7 @@ export default {
       S[ranColor] = true;
       return S;
     },
+
   }
 }
 </script>
@@ -108,9 +111,12 @@ export default {
   .content-li{
     text-align: left;
     box-shadow:0 0 5px #999;
+    margin:5px 0;
     padding:2px 0;
     height:auto;
-    width:98%;
-    margin:5px 1%;
+    width:100%;
+    @media (max-width:960px){
+      padding:0;
+    }
   }
 </style>

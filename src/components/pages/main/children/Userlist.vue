@@ -57,13 +57,16 @@ export default {
     float: left;
     box-shadow: 0 0 5px #999;
     height:550px;
-    padding:0 5px 0 0;
     width:240px;
-    // overflow-y: scroll;
-    overflow-y: hidden;
+    // padding-right:5px;
+    overflow-y: scroll;
     a{
       margin:2px;
       height:auto;
+    }
+    @media (max-width: 960px){
+      width:100%;
+      height:12%;
     }
   }
 

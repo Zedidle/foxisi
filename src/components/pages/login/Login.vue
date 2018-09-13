@@ -1,16 +1,16 @@
 <template>
 	<div class="login">
-		<div class='welcome-title'>欢迎阿宅</div>
+		<div class='welcome-title'>🔥欢迎🔥</div>
 		<br>
 		<h4 class='token-tip' v-show='tokentip'>{{tokentip}}</h4>
 		<input 
 			@keyup.enter='login'
 			id='username'
-			placeholder="请输入您的用户名"
+			placeholder="输入昵称"
 			v-model.trim='username'
 		>
 		<br><br>
-		<a @click='login' class="button button-3d button-action button-rounded"><i class="fa fa-sign-in"> 登录</a>
+		<a @click='login' class="button button-3d button-action button-rounded"><i class="fa fa-sign-in"></i> 敲门</a>
 	</div>
 </template>
 
@@ -97,7 +97,7 @@ export default {
 <style scoped>
 	#username{
 		text-align: center;
-		width: 240px;
+		width: 10rem;
 		height:44px;
 		margin:0 auto;
 		font-size:18px;
@@ -107,6 +107,7 @@ export default {
 	}
 	.welcome-title{
 		font-size:36px;
+		color: #FFF;
 		text-align: center;
 	}
 </style>

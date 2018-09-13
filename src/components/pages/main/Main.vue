@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <welcome msg="火西宇宙聊天肆"/></welcome>
+    <welcome msg="🔥火西聊天室🔥"/></welcome>
     <userinfo></userinfo>
     <div class='content'>
       <userlist></userlist>
@@ -53,13 +53,16 @@ export default {
 
 .content{
   background:rgba(255,255,255,.85);
-  padding:5px;
+  padding:0;
   /*width:900px;*/
   width:auto;
   display: inline-block;
   height:560px;
   margin:0 auto;
   box-shadow: 0 0 5px #999;
+  @media (max-width: 960px){
+    height: auto;
+  }
 }
 </style>
 

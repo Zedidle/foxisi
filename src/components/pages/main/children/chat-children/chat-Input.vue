@@ -49,13 +49,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-  .chat-input{
+.chat-input{
     box-shadow:0 0 5px #999;
-    height:100px;
+    height:92px;
     width:100%;
+    @media (max-width:960px){
+	    height:auto;
+	}
     textarea{
 		font-family:'微软雅黑';
-		width:98%;
+		width:100%;
 		height:60px;
 		resize:none;
 		font-size:16px;
@@ -71,5 +74,5 @@ export default {
 			float: right;
 		}
 	}
-  }
+}
 </style>

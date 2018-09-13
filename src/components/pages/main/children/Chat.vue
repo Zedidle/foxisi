@@ -32,5 +32,10 @@ export default {
     box-shadow:0 0 5px #999;
     height:550px;
     width:630px;
+    @media (max-width:960px){
+      padding:0px;
+      height:83%;
+      width:100%;
+    }
   }
 </style>

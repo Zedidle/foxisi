@@ -30,10 +30,11 @@ export default {
       lineNumbers:true,
     });
 
-    // 后加载样式
+    let w = document.body.clientHeight;
     let f = document.querySelector('#my-code .codeflask');
-    f.style.width = '500px';
-    f.style.height = '550px';
+    // f.style.width = w>960?'550px':'22.75rem';
+    f.style.width = w>960?'550px':'100%';
+    f.style.height = '34rem';
     f.querySelector('pre').style.width = 'auto';
   },
   components:{
@@ -81,7 +82,6 @@ export default {
       this.offShowCode();
     }
   },
-
 }
 </script>
 
@@ -92,12 +92,18 @@ export default {
   }
   .code{
     opacity: 0.95;
-    border:2px solid #bbb;
-    width:500px;
+    background-color:#f4f4f4;
+    width:100%;
     height:580px;
     position:absolute;
     top:50%;
     left:50%;
     transform: translateX(-50%) translateY(-50%);
+    @media (max-width:960px){
+      position:fixed;
+      width:100%;
+      border:0px solid #bbb;
+      height:100%;
+    }
   }
 </style>
