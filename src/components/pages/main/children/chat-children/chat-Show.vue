@@ -52,7 +52,7 @@ export default {
           f.style.width = w>960?'600px':'100%';
           f.style.height = '2.5rem';
           f.style.position = 'relative';
-          f.style.overflowY = 'scroll';
+          f.style.overflow = 'scroll';
           f.style.resize = 'vertical';
           f.style.opacity = 0.8;
 

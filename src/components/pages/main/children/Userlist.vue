@@ -58,7 +58,6 @@ export default {
     box-shadow: 0 0 5px #999;
     height:550px;
     width:240px;
-    // padding-right:5px;
     overflow-y: scroll;
     a{
       margin:2px;
