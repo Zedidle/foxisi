@@ -1,6 +1,10 @@
 <template>
-  <div class="chat-input" @keyup.enter='send'>
-	<textarea v-model='content' placeholder="至多200字"></textarea>
+  <div
+  	class="chat-input"
+  	@keyup.enter='send'
+  	@keyup.ctrl.c='onShowCode'
+  >
+	<textarea autofocus v-model='content' placeholder="至多200字; 快捷打开代码:ctrl+c;"></textarea>
 	<a @click='onShowCode' class="button button-small"><i class="fa fa-quote-left"></i></a>
 	<a @click='send' class="button button-primary button-small"><i class="fa fa-send"></i> 发送</a>
   </div>  
@@ -12,6 +16,7 @@ import { mapState,mapMutations } from 'vuex'
 export default {
 	name: 'chat-input',
 	mounted(){
+		
 	},
 	data(){
 		return{
@@ -42,16 +47,15 @@ export default {
 			}));
 
 			vm.content = '';
-		}
+		},
 	},
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 .chat-input{
     box-shadow:0 0 5px #999;
-    height:92px;
+    height:96px;
     width:100%;
     @media (max-width:960px){
 	    height:auto;

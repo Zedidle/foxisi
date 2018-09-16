@@ -1,5 +1,10 @@
 <template>
-  <div v-show='isShowCode' class='code'>
+  <div 
+    class='code'
+    @keyup.ctrl.q="offShowCode"
+    @keyup.ctrl.enter="sendCode"
+    v-show='isShowCode'
+  >
     <div class='top'>
       <button 
         @click='offShowCode'
@@ -32,10 +37,18 @@ export default {
 
     let w = document.body.clientHeight;
     let f = document.querySelector('#my-code .codeflask');
-    // f.style.width = w>960?'550px':'22.75rem';
     f.style.width = w>960?'550px':'100%';
     f.style.height = '34rem';
+    f.querySelector('.codeflask__textarea').placeholder = 'ctrl+enter快捷发送; ctrl+q 快捷关闭;'
     f.querySelector('pre').style.width = 'auto';
+
+
+    setInterval(function(){
+      if(this.isShowCode){
+        document.querySelector("#my-code textarea").focus();
+      }
+    }.bind(this),500)
+
   },
   components:{
 
@@ -63,7 +76,7 @@ export default {
       let code = this.flask.getCode(),
           l = code.trim().length;
 
-      if(!l || l>5000) return;
+      if(!l || l>1000) return;
 
       const vm = this,
         socket = window.socket;
@@ -93,7 +106,7 @@ export default {
   .code{
     opacity: 0.95;
     background-color:#f4f4f4;
-    width:100%;
+    width:550px;
     height:580px;
     position:absolute;
     top:50%;

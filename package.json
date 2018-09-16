@@ -14,7 +14,8 @@
     "b": "npm run build",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "node foxisi.js",
+    "start": "node foxisi.jw",
+    "w": "npm run watch",
     "watch": "supervisor foxisi.js",
     "deploy": "pm2 start foxisi.js"
   },

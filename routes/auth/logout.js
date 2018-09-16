@@ -9,12 +9,8 @@ let logout = async function (ctx){
 	let username = body.username;
 	console.log(username,' logout.');
 
-
 	await redisClient.sremAsync('userlist',username);
-	let result = await redisClient.hdelAsync('usertoken',username);
-
-
-	ctx.body = result;
+	ctx.body = await redisClient.hdelAsync('usertoken',username);
 }
 
 module.exports = {

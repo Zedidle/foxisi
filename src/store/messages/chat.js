@@ -19,8 +19,6 @@ export default {
 				chatShow.scrollTop = chatShow.scrollHeight;
 			},0);
 
-
-
 			function btnStyle(){
 				let S = {
 					button:true,
@@ -39,6 +37,7 @@ export default {
 		},
 		offShowCode(state){
 			state.isShowCode = false;
+			document.querySelector('.chat-input>textarea').focus();
 		}
 	},
 	actions: {

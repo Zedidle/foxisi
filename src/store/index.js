@@ -11,6 +11,13 @@ export default new Vuex.Store({
   mutations: Object.assign({
     toLogin (state) {
       state.isLogin = true;
+
+      const socket = window.socket;
+      // 心跳
+      setInterval(function(){
+        socket.emit('heartbeat',localStorage.getItem('username'));
+      },5000);
+
     },
     toLogout(state){
       state.isLogin = false;

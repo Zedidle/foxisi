@@ -1,12 +1,12 @@
 <template>
 	<div class="login">
-		<div class='welcome-title'>🔥欢迎🔥</div>
+		<div class='welcome-title'>欢迎阿宅归来</div>
 		<br>
 		<h4 class='token-tip' v-show='tokentip'>{{tokentip}}</h4>
 		<input 
 			@keyup.enter='login'
 			id='username'
-			placeholder="输入昵称"
+			placeholder="昵称"
 			v-model.trim='username'
 		>
 		<br><br>
@@ -97,7 +97,7 @@ export default {
 <style scoped>
 	#username{
 		text-align: center;
-		width: 10rem;
+		width: 8rem;
 		height:44px;
 		margin:0 auto;
 		font-size:18px;
@@ -106,7 +106,7 @@ export default {
 		color:red;
 	}
 	.welcome-title{
-		font-size:36px;
+		font-size:1.5rem;
 		color: #FFF;
 		text-align: center;
 	}

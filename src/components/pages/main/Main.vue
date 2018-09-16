@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <welcome msg="🔥火西聊天室🔥"/></welcome>
+    <welcome msg="碎星聊天室"/></welcome>
     <userinfo></userinfo>
     <div class='content'>
       <userlist></userlist>
